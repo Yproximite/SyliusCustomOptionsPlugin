@@ -7,6 +7,7 @@ namespace Brille24\SyliusCustomerOptionsPlugin\Form\Product;
 use Brille24\SyliusCustomerOptionsPlugin\Entity\CustomerOptions\CustomerOptionInterface;
 use Brille24\SyliusCustomerOptionsPlugin\Entity\CustomerOptions\CustomerOptionValueInterface;
 use Brille24\SyliusCustomerOptionsPlugin\Entity\CustomerOptions\CustomerOptionValuePrice;
+use Brille24\SyliusCustomerOptionsPlugin\Enumerations\CurrencyEnum;
 use Brille24\SyliusCustomerOptionsPlugin\Form\DateRangeType;
 use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
 use Sylius\Bundle\MoneyBundle\Form\Type\MoneyType;
@@ -54,7 +55,7 @@ trait ProductCustomerOptionValuePriceTypeTrait
             ])
             ->add('amount', MoneyType::class, [
                 'empty_data' => '0.00',
-                'currency' => 'USD',
+                'currency' => $this->getDefaultCurrency($builder),
                 'required' => false,
             ])
             ->add('type', ChoiceType::class, [
@@ -70,5 +71,29 @@ trait ProductCustomerOptionValuePriceTypeTrait
                 ],
             ])
         ;
+    }
+
+    private function getDefaultCurrency(FormBuilderInterface $builder): string
+    {
+        if (!$builder->has('channel')) {
+            return CurrencyEnum::DEFAULT_CURRENCY;
+        }
+
+        $channelType = $builder->get('channel');
+        if (null === $channelType) {
+            return CurrencyEnum::DEFAULT_CURRENCY;
+        }
+
+        $channels = $channelType->getOption('choices');
+        if (null === $channels) {
+            return CurrencyEnum::DEFAULT_CURRENCY;
+        }
+
+        $channel = $channels[0] ?? null;
+        if (null === $channel) {
+            return CurrencyEnum::DEFAULT_CURRENCY;
+        }
+
+        return $channel->getBaseCurrency()->getCode() ?? CurrencyEnum::DEFAULT_CURRENCY;
     }
 }
