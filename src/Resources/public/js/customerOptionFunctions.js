@@ -17,7 +17,7 @@ $(document).ready(function () {
 	var i = 0;
 	var result;
 	do {
-			result = $('#sylius_product_customerOptionValuePrices_' + i + '_channel');
+			result = $('#sylius_product_customer_option_value_prices_' + i + '_channel');
 			result.change();
 			i++;
 	} while (result.length !== 0 && i < 100);
