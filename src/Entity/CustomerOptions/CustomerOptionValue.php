@@ -32,7 +32,7 @@ class CustomerOptionValue implements CustomerOptionValueInterface, \Stringable
 
     protected string $code;
 
-    protected int $position;
+    protected ?int $position;
 
     protected Collection $prices;
 
@@ -76,7 +76,7 @@ class CustomerOptionValue implements CustomerOptionValueInterface, \Stringable
         return $this->position;
     }
 
-    public function setPosition(int $position): void
+    public function setPosition(?int $position): void
     {
         $this->position = $position;
     }
