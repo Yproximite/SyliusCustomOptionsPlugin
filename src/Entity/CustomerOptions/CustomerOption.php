@@ -16,6 +16,7 @@ use Brille24\SyliusCustomerOptionsPlugin\Entity\OrderItemOptionInterface;
 use Brille24\SyliusCustomerOptionsPlugin\Enumerations\CustomerOptionTypeEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslationInterface;
 
@@ -137,7 +138,9 @@ class CustomerOption implements CustomerOptionInterface
      */
     public function getValues(): Collection
     {
-        return $this->values;
+        $sort = new Criteria(null, ['position' => Criteria::ASC]);
+
+        return $this->values->matching($sort);
     }
 
     /**
