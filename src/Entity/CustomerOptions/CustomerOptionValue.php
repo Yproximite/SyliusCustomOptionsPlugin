@@ -45,7 +45,7 @@ class CustomerOptionValue implements CustomerOptionValueInterface, \Stringable
     protected Collection $prices;
 
     #[ORM\Column(type: 'string')]
-    protected int $position;
+    protected ?int $position;
 
     #[ORM\ManyToOne(targetEntity: CustomerOptionInterface::class, inversedBy: 'values')]
     #[ORM\JoinColumn(onDelete: 'CASCADE')]
@@ -90,7 +90,7 @@ class CustomerOptionValue implements CustomerOptionValueInterface, \Stringable
         return $this->position;
     }
 
-    public function setPosition(int $position): void
+    public function setPosition(?int $position): void
     {
         $this->position = $position;
     }

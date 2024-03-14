@@ -27,7 +27,7 @@ interface CustomerOptionValueInterface extends ResourceInterface, TranslatableIn
      */
     public function getCode(): ?string;
 
-    public function setPosition(int $position): void;
+    public function setPosition(?int $position): void;
 
     public function getPosition(): ?int;
 
