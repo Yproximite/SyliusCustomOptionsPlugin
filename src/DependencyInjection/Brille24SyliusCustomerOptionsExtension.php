@@ -40,10 +40,11 @@ final class Brille24SyliusCustomerOptionsExtension extends Extension implements 
             return;
         }
 
+        $doctrineConfig = $container->getExtensionConfig('doctrine_migrations');
         $container->prependExtensionConfig('doctrine_migrations', [
-            'migrations_paths' => [
+            'migrations_paths' => array_merge(array_pop($doctrineConfig)['migrations_paths'] ?? [], [
                 'Brille24\SyliusCustomerOptionsPlugin\Migrations' => '@Brille24SyliusCustomerOptionsPlugin/Migrations',
-            ],
+            ]),
         ]);
 
         $container->prependExtensionConfig('sylius_labs_doctrine_migrations_extra', [
