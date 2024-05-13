@@ -65,9 +65,8 @@ class OrderItemOptionFactory implements OrderItemOptionFactoryInterface, Factory
             /** @var ProductInterface $product */
             $product = $orderItem->getProduct();
 
-            $contextChannel = $this->channelContext->getChannel();
             /** @var ChannelInterface $channel */
-            $channel = $order ? $order->getChannel() : $contextChannel;
+            $channel = $order !== null ? $order->getChannel() : $this->channelContext->getChannel();
 
             /** @var CustomerOptionValuePriceInterface $price */
             $price = $this->customerOptionValuePriceRepository->getPriceForChannel($channel, $product, $customerOptionValue);
