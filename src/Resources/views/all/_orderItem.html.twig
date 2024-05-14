@@ -1,8 +1,13 @@
-{% macro renderPrice(orderItem) %}
+{% macro renderPrice(orderItem, order = null) %}
     {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
     {% set priceType = orderItem.pricingType %}
     {% if priceType == 'FIXED_AMOUNT' and orderItem.fixedPrice != 0 %}
-        ( {{ money.convertAndFormat(orderItem.fixedPrice) }} )
+        {% if order is not null %}
+            {% set formattedFixedPrice = orderItem.fixedPrice|sylius_format_money(order.currencyCode, order.localeCode) %}
+        {% else %}
+            {% set formattedFixedPrice = money.convertAndFormat(orderItem.fixedPrice) %}
+        {% endif %}
+        ( {{ formattedFixedPrice }} )
     {% elseif priceType == 'PERCENT' and orderItem.percent != 0 %}
         ( {{ orderItem.percent * 100 }} % )
     {% endif %}
