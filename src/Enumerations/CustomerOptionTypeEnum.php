@@ -90,7 +90,7 @@ final class CustomerOptionTypeEnum implements EnumInterface
             ],
             self::MULTI_SELECT => [
                 ChoiceType::class,
-                ['multiple' => true],
+                ['multiple' => true, 'expanded' => true, 'attr' => ['style' => 'display:block']],
             ],
             self::DATE => [
                 DateType::class,
