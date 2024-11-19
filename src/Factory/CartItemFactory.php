@@ -83,7 +83,7 @@ class CartItemFactory implements CartItemFactoryInterface
                 // Creating the item
                 $salesOrderConfiguration = $this->orderItemOptionFactory->createNewFromStrings(
                     $cartItem,
-                    $customerOptionCode,
+                    (string)$customerOptionCode,
                     $value,
                 );
 
@@ -111,7 +111,7 @@ class CartItemFactory implements CartItemFactoryInterface
         // Date options need a little extra attention
         // We transform the date fields into a single date string
         foreach ($addToCart['customer_options'] as $code => $value) {
-            $customerOption = $this->customerOptionRepository->findOneByCode($code);
+            $customerOption = $this->customerOptionRepository->findOneByCode((string)$code);
             Assert::notNull($customerOption);
 
             switch ($customerOption->getType()) {
