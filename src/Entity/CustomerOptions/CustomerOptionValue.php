@@ -32,6 +32,8 @@ class CustomerOptionValue implements CustomerOptionValueInterface, \Stringable
 
     protected string $code;
 
+    protected ?int $position;
+
     protected Collection $prices;
 
     protected ?CustomerOptionInterface $customerOption = null;
@@ -67,6 +69,16 @@ class CustomerOptionValue implements CustomerOptionValueInterface, \Stringable
     public function getCode(): string
     {
         return $this->code ?? '';
+    }
+
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(?int $position): void
+    {
+        $this->position = $position;
     }
 
     /**

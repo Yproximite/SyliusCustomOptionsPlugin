@@ -14,11 +14,21 @@ var customerOptions = {
 };
 
 $(document).ready(function () {
-	var i = 0;
-	var result;
-	do {
-			result = $('#sylius_product_customerOptionValuePrices_' + i + '_channel');
-			result.change();
-			i++;
-	} while (result.length !== 0 && i < 100);
+	const channelSelects = document.querySelectorAll('#sylius_product_customer_option_value_prices [data-form-collection-index] .product-customer-option-channel');
+	channelSelects.forEach(function(channelSelect) {
+		channelSelect.dispatchEvent(new Event('change'));
+	});
+
+	const addBtn = document.querySelector('#sylius_product_customer_option_value_prices [data-form-collection="add"]');
+	if (addBtn !== null) {
+		addBtn.addEventListener("click", (event) => {
+			setTimeout(function(){
+				const channelSelect = document.querySelector('#sylius_product_customer_option_value_prices [data-form-collection-index]:last-of-type .product-customer-option-channel');
+				if (channelSelect === null) {
+					return;
+				}
+				channelSelect.dispatchEvent(new Event('change'));
+			}, 100);
+		});
+	}
 });

@@ -14,6 +14,8 @@
 
         <field name="code"/>
 
+        <field name="position"/>
+
         <one-to-many
                 field="prices"
                 target-entity="Brille24\SyliusCustomerOptionsPlugin\Entity\CustomerOptions\CustomerOptionValuePriceInterface"
