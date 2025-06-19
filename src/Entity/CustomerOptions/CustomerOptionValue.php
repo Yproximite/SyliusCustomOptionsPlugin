@@ -25,7 +25,7 @@ use Sylius\Component\Resource\Model\TranslationInterface;
 
 /**
  * @ORM\Entity(repositoryClass=CustomerOptionValueRepository::class)
- * @ORM\Table(name="brille24_customer_option_value", uniqueConstraints={@ORM\UniqueConstraint(name="unique_customer_option_code", columns={"customerOption_id", "code"})}
+ * @ORM\Table(name="brille24_customer_option_value", uniqueConstraints={@ORM\UniqueConstraint(name="unique_customer_option_code", columns={"customerOption_id", "code"})})
  */
 class CustomerOptionValue implements CustomerOptionValueInterface, \Stringable
 {

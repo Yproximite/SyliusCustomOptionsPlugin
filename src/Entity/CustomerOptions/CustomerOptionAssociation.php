@@ -21,10 +21,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @see CustomerOption
  * @see CustomerOptionGroup
- */
-/**
+ *
  * @ORM\Entity()
- * @ORM\Table(name="brille24_customer_option_association", uniqueConstraints={@ORM\UniqueConstraint(name="option_group_unique", columns={"option_id", "group_id"})}
+ * @ORM\Table(name="brille24_customer_option_association", uniqueConstraints={@ORM\UniqueConstraint(name="option_group_unique", columns={"option_id", "group_id"})})
  */
 class CustomerOptionAssociation implements CustomerOptionAssociationInterface
 {
