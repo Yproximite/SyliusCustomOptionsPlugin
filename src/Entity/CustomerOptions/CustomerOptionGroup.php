@@ -53,12 +53,12 @@ class CustomerOptionGroup implements CustomerOptionGroupInterface, \Stringable
     /**
      * @ORM\OneToMany(targetEntity=ProductInterface::class, mappedBy="customerOptionGroup")
      */
-    protected ArrayCollection $products;
+    protected Collection $products;
 
     /**
      * @ORM\OneToMany(targetEntity=ValidatorInterface::class, mappedBy="customerOptionGroup", cascade={"persist", "remove"})
      */
-    protected ArrayCollection $validators;
+    protected Collection $validators;
 
     public function __construct()
     {
