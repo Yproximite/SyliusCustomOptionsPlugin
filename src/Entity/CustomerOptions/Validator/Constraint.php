@@ -16,7 +16,7 @@ class Constraint implements ConstraintInterface
     use ConditionTrait;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ValidatorInterface::class", cascade={"persist"}, inversedBy="conditions")
+     * @ORM\ManyToOne(targetEntity=ValidatorInterface::class, cascade={"persist"}, inversedBy="conditions")
      * @ORM\JoinColumn(onDelete="CASCADE")
      **/
     protected ?ValidatorInterface $validator = null;

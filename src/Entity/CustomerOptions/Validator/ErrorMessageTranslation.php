@@ -27,7 +27,7 @@ class ErrorMessageTranslation extends AbstractTranslation implements ErrorMessag
     protected ?string $message = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ErrorMessageInterface::class", inversedBy="translations")
+     * @ORM\ManyToOne(targetEntity=ErrorMessageInterface::class, inversedBy="translations")
      * @ORM\JoinColumn(onDelete="CASCADE")
      **/
     protected ?TranslatableInterface $translatable = null;

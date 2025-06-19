@@ -15,18 +15,18 @@ use Webmozart\Assert\Assert;
 trait ConditionTrait
 {
     /**
-     * @ORM\ManyToOne(targetEntity="CustomerOptionInterface::class")
+     * @ORM\ManyToOne(targetEntity=CustomerOptionInterface::class)
      * @ORM\JoinColumn(onDelete="SET NULL")
      **/
     protected ?CustomerOptionInterface $customerOption = null;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected ?string $comparator = null;
 
     /**
-     * @ORM\Column(type="json", nullable="true")
+     * @ORM\Column(type="json", nullable=true)
      */
     protected ?array $value = null;
 

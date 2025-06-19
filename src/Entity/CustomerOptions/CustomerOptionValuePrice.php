@@ -50,26 +50,26 @@ class CustomerOptionValuePrice implements CustomerOptionValuePriceInterface, \St
     protected string $type = CustomerOptionValuePriceInterface::TYPE_FIXED_AMOUNT;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CustomerOptionValueInterface::class", inversedBy="prices", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=CustomerOptionValueInterface::class, inversedBy="prices", cascade={"persist"})
      * @ORM\JoinColumn(onDelete="CASCADE")
      **/
     protected ?CustomerOptionValueInterface $customerOptionValue = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ProductInterface::class", inversedBy="customerOptionValuePrices")
+     * @ORM\ManyToOne(targetEntity=ProductInterface::class, inversedBy="customerOptionValuePrices")
      * @ORM\JoinColumn(onDelete="CASCADE")
      **/
     protected ?ProductInterface $product = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ChannelInterface::class")
+     * @ORM\ManyToOne(targetEntity=ChannelInterface::class)
      * @ORM\JoinColumn(onDelete="CASCADE")
      **/
     protected ?ChannelInterface $channel = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="DateRange::class", cascade={"all"})
-     * @ORM\JoinColumn(nullable="true")
+     * @ORM\ManyToOne(targetEntity=DateRange::class, cascade={"all"})
+     * @ORM\JoinColumn(nullable=true)
      **/
     protected ?DateRangeInterface $dateValid = null;
 

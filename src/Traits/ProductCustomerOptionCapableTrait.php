@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 trait ProductCustomerOptionCapableTrait
 {
     /**
-     * @ORM\ManyToOne(targetEntity="CustomerOptionGroupInterface::class", inversedBy="products", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity=CustomerOptionGroupInterface::class, inversedBy="products", cascade={"all"})
      * @ORM\JoinColumn(onDelete="SET NULL")
      **/
     protected ?CustomerOptionGroupInterface $customerOptionGroup = null;

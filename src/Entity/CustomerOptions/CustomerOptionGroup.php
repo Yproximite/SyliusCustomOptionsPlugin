@@ -40,12 +40,12 @@ class CustomerOptionGroup implements CustomerOptionGroupInterface, \Stringable
     protected int $id;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected ?string $code;
 
     /**
-     * @ORM\OneToMany(targetEntity=CustomerOptionAssociationInterface::class, mappedBy="group", orphanRemoval="true", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=CustomerOptionAssociationInterface::class, mappedBy="group", orphanRemoval=true, cascade={"persist", "remove"})
      * @ORM\OrderBy({"position" = "ASC"})
      */
     protected Collection $optionAssociations;

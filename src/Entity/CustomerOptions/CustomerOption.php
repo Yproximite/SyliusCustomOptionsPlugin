@@ -46,7 +46,7 @@ class CustomerOption implements CustomerOptionInterface
     protected string $type = CustomerOptionTypeEnum::SELECT;
 
     /**
-     * @ORM\Column(type="string", nullable="false", unique="true")
+     * @ORM\Column(type="string", nullable="false", unique=true)
      */
     protected ?string $code = '';
 
@@ -56,7 +56,7 @@ class CustomerOption implements CustomerOptionInterface
     protected bool $required = false;
 
     /**
-     * @ORM\OneToMany(targetEntity=CustomerOptionValueInterface::class, mappedBy="customerOption", orphanRemoval="true", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=CustomerOptionValueInterface::class, mappedBy="customerOption", orphanRemoval=true, cascade={"persist", "remove"})
      * @ORM\OrderBy({"id" = "ASC"})
      */
     protected Collection $values;
@@ -67,7 +67,7 @@ class CustomerOption implements CustomerOptionInterface
     protected array $configuration = [];
 
     /**
-     * @ORM\OneToMany(targetEntity=CustomerOptionAssociationInterface::class, mappedBy="option", orphanRemoval="true", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=CustomerOptionAssociationInterface::class, mappedBy="option", orphanRemoval=true, cascade={"persist"})
      * @ORM\OrderBy({"position" = "ASC"})
      */
     protected Collection $groupAssociations;

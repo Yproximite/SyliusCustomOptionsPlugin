@@ -57,7 +57,7 @@ class CustomerOptionValue implements CustomerOptionValueInterface, \Stringable
     protected Collection $prices;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CustomerOptionInterface::class", inversedBy="values")
+     * @ORM\ManyToOne(targetEntity=CustomerOptionInterface::class, inversedBy="values")
      * @ORM\JoinColumn(onDelete="CASCADE")
      **/
     protected ?CustomerOptionInterface $customerOption = null;

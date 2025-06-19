@@ -34,14 +34,14 @@ class OrderItemOption implements OrderItemOptionInterface, \Stringable
     protected ?int $id = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="OrderItemInterface::class", inversedBy="configuration")
+     * @ORM\ManyToOne(targetEntity=OrderItemInterface::class, inversedBy="configuration")
      * @ORM\JoinColumn(onDelete="CASCADE")
      **/
     protected OrderItemInterface $orderItem;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CustomerOptionInterface::class", inversedBy="orders")
-     * @ORM\JoinColumn(onDelete="SET NULL", nullable="true")
+     * @ORM\ManyToOne(targetEntity=CustomerOptionInterface::class, inversedBy="orders")
+     * @ORM\JoinColumn(onDelete="SET NULL", nullable=true)
      **/
     protected ?CustomerOptionInterface $customerOption = null;
 
@@ -61,23 +61,23 @@ class OrderItemOption implements OrderItemOptionInterface, \Stringable
     protected string $customerOptionName;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CustomerOptionValueInterface::class", inversedBy="orders")
-     * @ORM\JoinColumn(onDelete="SET NULL", nullable="true")
+     * @ORM\ManyToOne(targetEntity=CustomerOptionValueInterface::class, inversedBy="orders")
+     * @ORM\JoinColumn(onDelete="SET NULL", nullable=true)
      **/
     protected ?CustomerOptionValueInterface $customerOptionValue = null;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected ?string $customerOptionValueCode = null;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected ?string $customerOptionValueName = null;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected ?string $optionValue = null;
 
@@ -97,8 +97,8 @@ class OrderItemOption implements OrderItemOptionInterface, \Stringable
     protected float $percent = 0;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FileContent::class", cascade={"all"})
-     * @ORM\JoinColumn(nullable="true")
+     * @ORM\ManyToOne(targetEntity=FileContent::class, cascade={"all"})
+     * @ORM\JoinColumn(nullable=true)
      **/
     protected ?FileContent $fileContent = null;
 

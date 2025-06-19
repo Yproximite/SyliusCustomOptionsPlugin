@@ -25,17 +25,17 @@ class Validator implements ValidatorInterface
     protected ?int $id;
 
     /**
-     * @ORM\OneToMany(targetEntity=ConditionInterface::class, mappedBy="validator", orphanRemoval="true", cascade={"all"})
+     * @ORM\OneToMany(targetEntity=ConditionInterface::class, mappedBy="validator", orphanRemoval=true, cascade={"all"})
      */
     protected Collection $conditions;
 
     /**
-     * @ORM\OneToMany(targetEntity=ConstraintInterface::class, mappedBy="validator", orphanRemoval="true", cascade={"all"})
+     * @ORM\OneToMany(targetEntity=ConstraintInterface::class, mappedBy="validator", orphanRemoval=true, cascade={"all"})
      */
     protected Collection $constraints;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CustomerOptionGroupInterface::class", inversedBy="validators")
+     * @ORM\ManyToOne(targetEntity=CustomerOptionGroupInterface::class, inversedBy="validators")
      * @ORM\JoinColumn(onDelete="CASCADE")
      **/
     protected ?CustomerOptionGroupInterface $customerOptionGroup;
