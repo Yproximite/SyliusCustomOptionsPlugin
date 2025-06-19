@@ -41,12 +41,12 @@ class CustomerOption implements CustomerOptionInterface
     protected ?int $id = null;
 
     /**
-     * @ORM\Column(type="string", nullable="false")
+     * @ORM\Column(type="string", nullable=false)
      */
     protected string $type = CustomerOptionTypeEnum::SELECT;
 
     /**
-     * @ORM\Column(type="string", nullable="false", unique=true)
+     * @ORM\Column(type="string", nullable=false, unique=true)
      */
     protected ?string $code = '';
 

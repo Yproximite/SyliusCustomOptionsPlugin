@@ -37,13 +37,13 @@ class CustomerOptionAssociation implements CustomerOptionAssociationInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=CustomerOptionGroupInterface::class, inversedBy="optionAssociations", cascade={"persist"})
-     * @ORM\JoinColumn(onDelete="CASCADE", nullable="false")
+     * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
      **/
     protected ?CustomerOptionGroupInterface $group = null;
 
     /**
      * @ORM\ManyToOne(targetEntity=CustomerOptionInterface::class, inversedBy="groupAssociations", cascade={"persist"})
-     * @ORM\JoinColumn(onDelete="CASCADE", nullable="false")
+     * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
      **/
     protected ?CustomerOptionInterface $option = null;
 
