@@ -22,7 +22,7 @@ class ErrorMessageTranslation extends AbstractTranslation implements ErrorMessag
     protected ?int $id = null;
 
     /**
-     * @ORM\Column(type="text", nullable="true)
+     * @ORM\Column(type="text", nullable=true)
      */
     protected ?string $message = null;
 
