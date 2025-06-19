@@ -19,11 +19,14 @@ trait OrderItemCustomerOptionCapableTrait
       */
     protected Collection $configuration;
 
-    public function __construct()
+    public function getConfiguration(): Collection
     {
-        $this->configuration = new ArrayCollection();
-    }
+        if (!isset($this->configuration)) {
+            $this->configuration = new ArrayCollection();
+        }
 
+        return $this->configuration;
+    }
     /**
      * @inheritdoc
      */
@@ -38,7 +41,7 @@ trait OrderItemCustomerOptionCapableTrait
     public function getCustomerOptionConfiguration(bool $assoc = false): array
     {
         /** @var OrderItemOptionInterface[] $orderItemOptionList */
-        $orderItemOptionList = $this->configuration->toArray();
+        $orderItemOptionList = $this->getConfiguration()->toArray();
         if ($assoc) {
             /** @var array<int, mixed> $assocArray */
             $assocArray = [];
@@ -67,7 +70,7 @@ trait OrderItemCustomerOptionCapableTrait
     {
         $result = [];
         /** @var OrderItemOptionInterface $config */
-        foreach ($this->configuration as $config) {
+        foreach ($this->getConfiguration() as $config) {
             $result[$config->getCustomerOptionCode()] = $config->getScalarValue();
         }
 
