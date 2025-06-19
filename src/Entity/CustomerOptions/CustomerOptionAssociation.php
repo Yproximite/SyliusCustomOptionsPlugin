@@ -22,25 +22,34 @@ use Doctrine\ORM\Mapping as ORM;
  * @see CustomerOption
  * @see CustomerOptionGroup
  */
-#[ORM\Entity]
-#[ORM\Table(name: 'brille24_customer_option_association')]
-#[ORM\UniqueConstraint(name: 'option_group_unique', columns: ['option_id', 'group_id'])]
+/**
+ * @ORM\Entity()
+ * @ORM\Table(name="brille24_customer_option_association", uniqueConstraints={@ORM\UniqueConstraint(name="option_group_unique", columns={"option_id", "group_id"})}
+ */
 class CustomerOptionAssociation implements CustomerOptionAssociationInterface
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
-    #[ORM\Column(type: 'integer')]
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
     protected ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: CustomerOptionGroupInterface::class, cascade: ['persist'], inversedBy: 'optionAssociations')]
-    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
+    /**
+     * @ORM\ManyToOne(targetEntity=CustomerOptionGroupInterface::class, inversedBy="optionAssociations", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
+     **/
     protected ?CustomerOptionGroupInterface $group = null;
 
-    #[ORM\ManyToOne(targetEntity: CustomerOptionInterface::class, cascade: ['persist'], inversedBy: 'groupAssociations')]
-    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
+    /**
+     * @ORM\ManyToOne(targetEntity=CustomerOptionInterface::class, inversedBy="groupAssociations", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
+     **/
     protected ?CustomerOptionInterface $option = null;
 
-    #[ORM\Column(type: 'integer')]
+    /**
+     * @ORM\Column(type="integer")
+     */
     protected int $position = 0;
 
     /**

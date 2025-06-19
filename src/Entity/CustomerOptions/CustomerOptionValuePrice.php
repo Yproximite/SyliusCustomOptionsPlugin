@@ -21,38 +21,56 @@ use Sylius\Bundle\MoneyBundle\Formatter\MoneyFormatterInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Symfony\Component\Config\Definition\Exception\InvalidTypeException;
 
-#[ORM\Entity]
-#[ORM\Table(name: 'brille24_customer_option_value_price')]
+/**
+ * @ORM\Entity()
+ * @ORM\Table(name="brille24_customer_option_value_price")
+ */
 class CustomerOptionValuePrice implements CustomerOptionValuePriceInterface, \Stringable
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
-    #[ORM\Column(type: 'integer')]
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
     protected ?int $id = null;
 
-    #[ORM\Column(type: 'float')]
+    /**
+     * @ORM\Column(type="float")
+     */
     protected float $percent = 0;
 
-    #[ORM\Column(type: 'integer')]
+    /**
+     * @ORM\Column(type="integer")
+     */
     protected int $amount = 0;
 
-    #[ORM\Column(type: 'string', length: 12)]
+    /**
+     * @ORM\Column(type="string", length=12)
+     */
     protected string $type = CustomerOptionValuePriceInterface::TYPE_FIXED_AMOUNT;
 
-    #[ORM\ManyToOne(targetEntity: CustomerOptionValueInterface::class, cascade: ['persist'], inversedBy: 'prices')]
-    #[ORM\JoinColumn(onDelete: 'CASCADE')]
+    /**
+     * @ORM\ManyToOne(targetEntity=CustomerOptionValueInterface::class, inversedBy="prices", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     **/
     protected ?CustomerOptionValueInterface $customerOptionValue = null;
 
-    #[ORM\ManyToOne(targetEntity: ProductInterface::class, inversedBy: 'customerOptionValuePrices')]
-    #[ORM\JoinColumn(onDelete: 'CASCADE')]
+    /**
+     * @ORM\ManyToOne(targetEntity=ProductInterface::class, inversedBy="customerOptionValuePrices")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     **/
     protected ?ProductInterface $product = null;
 
-    #[ORM\ManyToOne(targetEntity: ChannelInterface::class)]
-    #[ORM\JoinColumn(onDelete: 'CASCADE')]
+    /**
+     * @ORM\ManyToOne(targetEntity=ChannelInterface::class)
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     **/
     protected ?ChannelInterface $channel = null;
 
-    #[ORM\OneToOne(targetEntity: DateRange::class, cascade: ['all'])]
-    #[ORM\JoinColumn(nullable: true)]
+    /**
+     * @ORM\ManyToOne(targetEntity=DateRange::class, cascade={"all"})
+     * @ORM\JoinColumn(nullable=true)
+     **/
     protected ?DateRangeInterface $dateValid = null;
 
     public function getId(): ?int

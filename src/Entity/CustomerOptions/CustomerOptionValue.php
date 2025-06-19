@@ -23,9 +23,10 @@ use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslationInterface;
 
-#[ORM\Entity(repositoryClass: CustomerOptionValueRepository::class)]
-#[ORM\Table(name: 'brille24_customer_option_value')]
-#[ORM\UniqueConstraint(name: 'unique_customer_option_code', columns: ['customerOption_id', 'code'])]
+/**
+ * @ORM\Entity(repositoryClass=CustomerOptionValueRepository::class)
+ * @ORM\Table(name="brille24_customer_option_value", uniqueConstraints={@ORM\UniqueConstraint(name="unique_customer_option_code", columns={"customerOption_id", "code"})}
+ */
 class CustomerOptionValue implements CustomerOptionValueInterface, \Stringable
 {
     use TranslatableTrait {
@@ -33,25 +34,37 @@ class CustomerOptionValue implements CustomerOptionValueInterface, \Stringable
         getTranslation as private doGetTranslation;
     }
 
-    #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
-    #[ORM\Column(type: 'integer')]
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
     protected ?int $id = null;
 
-    #[ORM\Column(type: 'string')]
+    /**
+     * @ORM\Column(type="string")
+     */
     protected string $code;
 
-    #[ORM\Column(type: 'integer')]
+    /**
+     * @ORM\Column(type="integer")
+     */
     protected ?int $position;
 
-    #[ORM\OneToMany(mappedBy: 'customerOptionValue', targetEntity: COValuePriceInterface::class, cascade: ['persist', 'remove'])]
+    /**
+     * @ORM\OneToMany(targetEntity=COValuePriceInterface::class, mappedBy="customerOptionValue", cascade={"persist", "remove"})
+     */
     protected Collection $prices;
 
-    #[ORM\ManyToOne(targetEntity: CustomerOptionInterface::class, inversedBy: 'values')]
-    #[ORM\JoinColumn(onDelete: 'CASCADE')]
+    /**
+     * @ORM\ManyToOne(targetEntity=CustomerOptionInterface::class, inversedBy="values")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     **/
     protected ?CustomerOptionInterface $customerOption = null;
 
-    #[ORM\OneToMany(mappedBy: 'customerOptionValue', targetEntity: OrderItemOptionInterface::class)]
+    /**
+     * @ORM\OneToMany(targetEntity=OrderItemOptionInterface::class, mappedBy="customerOptionValue")
+     */
     protected Collection $orders;
 
     public function __construct()

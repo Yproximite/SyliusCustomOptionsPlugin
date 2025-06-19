@@ -21,8 +21,10 @@ use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslationInterface;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CustomerOptionGroupRepository::class)]
-#[ORM\Table(name: 'brille24_customer_option_group')]
+/**
+ * @ORM\Entity(repositoryClass=CustomerOptionGroupRepository::class)
+ * @ORM\Table(name="brille24_customer_option_group")
+ */
 class CustomerOptionGroup implements CustomerOptionGroupInterface, \Stringable
 {
     use TranslatableTrait {
@@ -30,28 +32,33 @@ class CustomerOptionGroup implements CustomerOptionGroupInterface, \Stringable
         getTranslation as private doGetTranslation;
     }
 
-    /** @var int */
-    #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
-    #[ORM\Column(type: 'integer')]
-    protected $id;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
+    protected int $id;
 
-    /** @var string|null */
-    #[ORM\Column(type: 'string', nullable: true)]
-    protected $code;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected ?string $code;
 
-    /** @var Collection */
-    #[ORM\OneToMany(mappedBy: 'group', targetEntity: CustomerOptionAssociationInterface::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
-    #[ORM\OrderBy(['position' => 'ASC'])]
-    protected $optionAssociations;
+    /**
+     * @ORM\OneToMany(targetEntity=CustomerOptionAssociationInterface::class, mappedBy="group", orphanRemoval=true, cascade={"persist", "remove"})
+     * @ORM\OrderBy({"position" = "ASC"})
+     */
+    protected Collection $optionAssociations;
 
-    /** @var ArrayCollection */
-    #[ORM\OneToMany(mappedBy: 'customerOptionGroup', targetEntity: ProductInterface::class)]
-    protected $products;
+    /**
+     * @ORM\OneToMany(targetEntity=ProductInterface::class, mappedBy="customerOptionGroup")
+     */
+    protected ArrayCollection $products;
 
-    /** @var ArrayCollection */
-    #[ORM\OneToMany(mappedBy: 'customerOptionGroup', targetEntity: ValidatorInterface::class, cascade: ['persist', 'remove'])]
-    protected $validators;
+    /**
+     * @ORM\OneToMany(targetEntity=ValidatorInterface::class, mappedBy="customerOptionGroup", cascade={"persist", "remove"})
+     */
+    protected ArrayCollection $validators;
 
     public function __construct()
     {

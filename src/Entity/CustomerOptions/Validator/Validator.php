@@ -9,35 +9,42 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
-#[ORM\Table(name: 'brille24_customer_option_group_validator')]
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="brille24_customer_option_group_validator")
+ */
 class Validator implements ValidatorInterface
 {
     public const DEFAULT_ERROR_MESSAGE = 'This combination of values is not valid.';
 
-    /** @var int */
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    protected $id;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    protected ?int $id;
 
-    /** @var Collection */
-    #[ORM\OneToMany(targetEntity: ConditionInterface::class, mappedBy: 'validator', orphanRemoval: true, cascade: ['all'])]
-    protected $conditions;
+    /**
+     * @ORM\OneToMany(targetEntity=ConditionInterface::class, mappedBy="validator", orphanRemoval=true, cascade={"all"})
+     */
+    protected Collection $conditions;
 
-    /** @var Collection */
-    #[ORM\OneToMany(targetEntity: ConstraintInterface::class, mappedBy: 'validator', orphanRemoval: true, cascade: ['all'])]
-    protected $constraints;
+    /**
+     * @ORM\OneToMany(targetEntity=ConstraintInterface::class, mappedBy="validator", orphanRemoval=true, cascade={"all"})
+     */
+    protected Collection $constraints;
 
-    /** @var CustomerOptionGroupInterface|null */
-    #[ORM\ManyToOne(targetEntity: CustomerOptionGroupInterface::class, inversedBy: 'validators')]
-    #[ORM\JoinColumn(onDelete: 'CASCADE')]
-    protected $customerOptionGroup;
+    /**
+     * @ORM\ManyToOne(targetEntity=CustomerOptionGroupInterface::class, inversedBy="validators")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     **/
+    protected ?CustomerOptionGroupInterface $customerOptionGroup;
 
-    /** @var ErrorMessageInterface */
-    #[ORM\OneToOne(targetEntity: ErrorMessage::class, cascade: ['all'])]
-    #[ORM\JoinColumn(onDelete: 'SET NULL')]
-    protected $errorMessage;
+    /**
+     * @ORM\OneToOne(targetEntity=ErrorMessage::class, cascade={"all"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    protected ErrorMessageInterface $errorMessage;
 
     public function __construct()
     {
