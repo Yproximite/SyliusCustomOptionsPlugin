@@ -22,8 +22,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslationInterface;
 
-#[ORM\Entity(repositoryClass: CustomerOptionRepository::class)]
-#[ORM\Table(name: 'brille24_customer_option')]
+/**
+ * @ORM\Entity(repositoryClass=CustomerOptionRepository::class)
+ * @ORM\Table(name="brille24_customer_option")
+ */
 class CustomerOption implements CustomerOptionInterface
 {
     use TranslatableTrait {
@@ -31,35 +33,48 @@ class CustomerOption implements CustomerOptionInterface
         getTranslation as private doGetTranslation;
     }
 
-    #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
-    #[ORM\Column(type: 'integer')]
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
     protected ?int $id = null;
 
-    #[ORM\Column(type: 'string', nullable: false)]
+    /**
+     * @ORM\Column(type="string", nullable="false")
+     */
     protected string $type = CustomerOptionTypeEnum::SELECT;
 
-    #[ORM\Column(type: 'string', unique: true, nullable: false)]
+    /**
+     * @ORM\Column(type="string", nullable="false", unique="true")
+     */
     protected ?string $code = '';
 
-    #[ORM\Column(type: 'boolean')]
+    /**
+     * @ORM\Column(type="boolean")
+     */
     protected bool $required = false;
 
-    /** @var Collection|CustomerOptionValueInterface[] */
-    #[ORM\OneToMany(targetEntity: CustomerOptionValueInterface::class, mappedBy: 'customerOption', orphanRemoval: true, cascade: ['persist', 'remove'])]
-    #[ORM\OrderBy(['id' => 'ASC'])]
+    /**
+     * @ORM\OneToMany(targetEntity=CustomerOptionValueInterface::class, mappedBy="customerOption", orphanRemoval="true", cascade={"persist", "remove"})
+     * @ORM\OrderBy({"id" = "ASC"})
+     */
     protected Collection $values;
 
-    #[ORM\Column(type: 'json')]
+    /**
+     * @ORM\Column(type="json")
+     */
     protected array $configuration = [];
 
-    /** @var Collection|CustomerOptionAssociationInterface[] */
-    #[ORM\OneToMany(targetEntity: CustomerOptionAssociationInterface::class, mappedBy: 'option', orphanRemoval: true, cascade: ['persist'])]
-    #[ORM\OrderBy(['position' => 'ASC'])]
+    /**
+     * @ORM\OneToMany(targetEntity=CustomerOptionAssociationInterface::class, mappedBy="option", orphanRemoval="true", cascade={"persist"})
+     * @ORM\OrderBy({"position" = "ASC"})
+     */
     protected Collection $groupAssociations;
 
-    /** @var Collection|OrderItemOptionInterface[] */
-    #[ORM\OneToMany(targetEntity: OrderItemOptionInterface::class, mappedBy: 'customerOption')]
+    /**
+     * @ORM\OneToMany(targetEntity=OrderItemOptionInterface::class, mappedBy="customerOption")
+     */
     protected Collection $orders;
 
     public function __construct()

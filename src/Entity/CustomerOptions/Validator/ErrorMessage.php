@@ -8,21 +8,27 @@ use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslationInterface;
 
-#[ORM\Entity]
-#[ORM\Table(name: 'brille24_validator_error_message')]
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="brille24_validator_error_message")
+ */
 class ErrorMessage implements ErrorMessageInterface
 {
     use TranslatableTrait {
         __construct as protected initializeTranslationsCollection;
     }
 
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
     protected int $id;
 
-    #[ORM\OneToOne(targetEntity: ValidatorInterface::class)]
-    #[ORM\JoinColumn(onDelete: 'CASCADE')]
+    /**
+     * @ORM\OneToOne(targetEntity=ValidatorInterface::class)
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
     protected ValidatorInterface $validator;
 
     public function __construct()

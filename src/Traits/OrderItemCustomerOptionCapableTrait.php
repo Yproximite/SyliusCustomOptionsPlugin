@@ -14,14 +14,9 @@ use Sylius\Component\Order\Model\OrderItemInterface as SyliusOrderItemInterface;
 
 trait OrderItemCustomerOptionCapableTrait
 {
-    /**
-     * @var Collection<OrderItemOptionInterface>
-     */
-     #[ORM\OneToMany(
-        targetEntity:OrderItemOptionInterface::class,
-         mappedBy:'orderItem',
-         cascade:['persist', 'remove']
-     )]
+     /**
+      * @ORM\OneToMany(targetEntity=OrderItemOptionInterface::class, mappedBy="orderItem", cascade={"persist", "remove"})
+      */
     protected Collection $configuration;
 
     public function __construct()

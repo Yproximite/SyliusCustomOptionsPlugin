@@ -8,19 +8,27 @@ use Doctrine\ORM\Mapping as ORM;
 use DateTimeInterface;
 use InvalidArgumentException;
 
-#[ORM\Entity]
-#[ORM\Table(name: 'brille24_customer_option_date_range')]
+/**
+ * @ORM\Entity()
+ * @ORM\Table(name="brille24_customer_option_date_range")
+ */
 class DateRange implements DateRangeInterface, \Stringable
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
     private ?int $id = null;
 
-    #[ORM\Column(type: 'datetime')]
+    /**
+     * @ORM\Column(type="datetime")
+     */
     private DateTimeInterface $start;
 
-    #[ORM\Column(type: 'datetime')]
+    /**
+     * @ORM\Column(type="datetime")
+     */
     private DateTimeInterface $end;
 
     public function getId(): ?int

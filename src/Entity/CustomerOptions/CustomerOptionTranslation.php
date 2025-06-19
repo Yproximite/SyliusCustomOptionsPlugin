@@ -16,20 +16,28 @@ use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\AbstractTranslation;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 
-#[ORM\Entity]
-#[ORM\Table(name: 'brille24_customer_option_translation')]
+/**
+ * @ORM\Entity()
+ * @ORM\Table(name="brille24_customer_option_translation")
+ */
 class CustomerOptionTranslation extends AbstractTranslation implements CustomerOptionTranslationInterface
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
-    #[ORM\Column(type: 'integer')]
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
     protected ?int $id = null;
 
-    #[ORM\Column(type: 'string', nullable: true)]
+    /**
+     * @ORM\Column(type="string", nullable="true")
+     */
     protected ?string $name = null;
 
-    #[ORM\ManyToOne(targetEntity: CustomerOptionInterface::class, inversedBy: 'translations')]
-    #[ORM\JoinColumn(onDelete: 'CASCADE')]
+    /**
+     * @ORM\ManyToOne(targetEntity="CustomerOptionInterface::class", inversedBy="translations")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     **/
     protected ?TranslatableInterface $translatable = null;
 
     /**
